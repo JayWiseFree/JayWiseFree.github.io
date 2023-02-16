@@ -1,3 +1,4 @@
+/* Global fonts and text alignment*/
 @font-face {
   font-family: 'Bebas Neue';
   src: url("./fonts/BebasNeue-Regular.ttf") format("truetype");
@@ -12,40 +13,17 @@
   font-style: normal;
 }
 
-#support p {
+p,
+th,
+td,
+li {
   font-family: 'Montserrat', sans-serif;
   text-align: center;
 }
 
-#support {
-  border: 1px solid black;
-  border-radius: 2rem;
-  margin-top: 5px;
-}
-
-#trade-table {
-    font-size: 14px;
-    border-collapse: collapse;
-  }
-
-#trade-table th, #trade-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    font-family: 'Montserrat', sans-serif;
-  }
-
-  #total-table {
-    font-size: 14px;
-    border-collapse: collapse;
-  }
-
-#total-table th, #total-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    font-family: 'Montserrat', sans-serif;
-  }
-
+/* Header */
 header h1 {
+  overflow: auto;
   font-family: 'Bebas Neue';
   background-image: url("/resources/images/h1bg.jpg");
   background-position: center;
@@ -55,9 +33,9 @@ header h1 {
   justify-content: center;
   align-items: center;
   color: white;
-  height: 400px;
+  height: 200px;
   border: 0.2rem solid #fff;
-  padding: 0.4em;
+  padding: 10px;
   border-radius: 2rem;
   box-shadow: 0 0 .2rem #fff,
               0 0 .2rem #fff,
@@ -65,7 +43,19 @@ header h1 {
               0 0 0.8rem #bc13fe,
               0 0 2.8rem #bc13fe,
               inset 0 0 1.3rem #bc13fe;
-  margin-bottom: 1.5rem;
+  margin-bottom: 10px;
+}
+
+#container2 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+header h2 {
+  color: black;
 }
 
 .neonText {
@@ -98,28 +88,22 @@ header h1 {
   }
 }
 
-#table1,
-#table2 {
-  display: inline-block;
-  vertical-align: top;
-}
-
-#table1,
-#trade-table {
-  width: 415px;
-}
-
-
-
-td {
-  text-align: center;
-}
-
+/* Support Us */
 h2 {
   text-align: center;
   font-family: 'Bebas Neue';
+  font-size: 36px;
+  padding: 0px;
 }
 
+#support {
+  border: 1px solid black;
+  border-radius: 2rem;
+  margin-top: 5px;
+  overflow: auto;
+}
+
+/* Navigation */
 a {
   color: brown;
 }
@@ -135,4 +119,42 @@ nav li {
 
 nav {
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
+
+/* Trade Tables */
+#container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+#trade-table,
+#total-table {
+    font-size: 14px;
+    border-collapse: collapse;
+    margin: 5px;
+  }
+
+td, 
+th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#table1,
+#trade-table {
+  width: 415px;
+}
+
+
+
+
+
+
+
