@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./resources/css/style.css" />
+    <link rel="stylesheet" href="./resources/css/fonts/BebasNeue-Regular.ttf" />
+    <link rel="stylesheet" href="./resources/css/fonts/Montserrat-Regular.ttf" />
+  </head>
+
+  <body>
+    <header>
+      <h1 class="neonText">ByBit Trades Tracker</h1>
+    </header>
+    <div id="support">
+      <p>Support us by signing up for a <strong><a href="https://bybit.crackingcryptocurrency.com">ByBit Trading Account</a></strong>!</p>
+      <p>Zero fees on Spot Markets, Futures, Options, Copy-Trading, Bots, and earn up to $4,400 in bonuses with our <strong><a href="https://bybit.crackingcryptocurrency.com">affiliate code</a></strong>!</p>
+      <p>Brought to you by <strong><a href="https://crackingcryptocurrency.com">Cracking Cryptocurrency</a></strong> - the #1 resource for Cryptocurrency Traders and Investors.</p>
+    </div>
+    <nav>
+      <ul>
+        <li>Bitcoin</li>
+        <li><a href="./index.html">BTC/USDT PERP</a></li>
+        <!--<li><a href="./btcspot.html">BTC/USDT SPOT</a></li>-->
+        <li>Ethereum</li>
+        <li><a href="./ethperp.html">ETH/USDT PERP</a></li>
+        <!--<li><a href="./ethspot.html">ETH/USDT SPOT</a></li>-->
+      </ul>
+    </nav>
+    <div id="table2">
+      <h2>Strength Tracker</h2>
+    <table id="total-table">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th># of Buys</th>
+          <th>Buy Volume</th>
+          <th># of Sells</th>
+          <th>Sell Volume</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    </div>
+    <div id="table1">
+      <h2>Recent Trades</h2>
+    <table id="trade-table">
+      <thead>
+        <tr>
+          <th>Direction</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    </div>
+    <!-- 
+      Initial Script reference, trying to get around CORS error by calling it as a module. Did not work
+      <script type="module" src="main.js"></script>
+    -->
+
+    <!-- 
+      Second attempt, calling the bundled javascript file instead.
+    -->
+    <script src="./resources/js/bundle2.js"></script>
+  </body>
+</html>

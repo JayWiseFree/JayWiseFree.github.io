@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "bybit-api": "^3.4.0",
+    "hmac": "^1.0.1",
+    "json": "^11.0.0",
+    "websocket": "^1.0.34"
+  }
+}

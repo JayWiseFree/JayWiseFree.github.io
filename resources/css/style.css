@@ -1,0 +1,138 @@
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url("./fonts/BebasNeue-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url("./fonts/Montserrat-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+#support p {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+}
+
+#support {
+  border: 1px solid black;
+  border-radius: 2rem;
+  margin-top: 5px;
+}
+
+#trade-table {
+    font-size: 14px;
+    border-collapse: collapse;
+  }
+
+#trade-table th, #trade-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  #total-table {
+    font-size: 14px;
+    border-collapse: collapse;
+  }
+
+#total-table th, #total-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+header h1 {
+  font-family: 'Bebas Neue';
+  background-image: url("/resources/images/h1bg.jpg");
+  background-position: center;
+  font-size: 100px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  height: 400px;
+  border: 0.2rem solid #fff;
+  padding: 0.4em;
+  border-radius: 2rem;
+  box-shadow: 0 0 .2rem #fff,
+              0 0 .2rem #fff,
+              0 0 2rem #bc13fe,
+              0 0 0.8rem #bc13fe,
+              0 0 2.8rem #bc13fe,
+              inset 0 0 1.3rem #bc13fe;
+  margin-bottom: 1.5rem;
+}
+
+.neonText {
+  animation: flicker 1.5s infinite alternate;
+  color: #000;
+}
+
+/* Flickering animation */
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    text-shadow:
+      0 0 4px #fff,
+      0 0 11px #fff,
+      0 0 19px #fff,
+      0 0 40px #0fa,
+      0 0 80px #0fa,
+      0 0 90px #0fa,
+      0 0 100px #0fa,
+      0 0 150px #0fa;
+  }
+  20%, 24%, 55% {       
+    text-shadow: none;
+  }
+}
+
+/*Accessibility no flickering for those with preferred reduced motion */
+@media screen and (prefers-reduced-motion) { 
+  h1 {
+    animation: none;
+  }
+}
+
+#table1,
+#table2 {
+  display: inline-block;
+  vertical-align: top;
+}
+
+#table1,
+#trade-table {
+  width: 415px;
+}
+
+
+
+td {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  font-family: 'Bebas Neue';
+}
+
+a {
+  color: brown;
+}
+
+a:hover {
+  color: blue;
+}
+
+nav li {
+  display: inline-block;
+  padding: 10px;
+}
+
+nav {
+  width: 100%;
+}
