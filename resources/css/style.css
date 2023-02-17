@@ -39,13 +39,13 @@ header h1 {
   font-family: 'Bebas Neue';
   background-image: url("/resources/images/h1bg.jpg");
   background-position: center;
-  font-size: 100px;
+  font-size: 10vw;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   color: rgb(231, 230, 230);
-  height: 200px;
+  height: 587;
   border: 0.2rem solid #fff;
   padding: 10px;
   border-radius: 2rem;
@@ -56,6 +56,7 @@ header h1 {
               0 0 2.8rem #320544,
               inset 0 0 1.3rem #320544;
   margin-bottom: 10px;
+  margin-top: 5px;
 }
 
 body.dark header h1 {
@@ -118,6 +119,7 @@ h2 {
 }
 
 #support {
+  width: 100%;
   border: 1px solid black;
   border-radius: 2rem;
   margin-top: 5px;
@@ -137,18 +139,66 @@ a:hover {
   color: blue;
 }
 
-nav li {
-  display: inline-block;
-  padding: 10px;
+#navigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-nav {
-  width: 100%;
+#navigation ul {
+  text-align: center;
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+#navigation li {
+  display: inline-block;
+  margin: 5px;
+}
+
+@media (max-width: 600px) {
+  #navigation li {
+    display: block;
+    text-align: center;;
+  }
+}
+
+#navigation button {
+  padding: 10px 20px;
+  font-size: 15px;
+}
+
+/* nav li {
+  display: inline-block;
+  padding: 10px;
+} */
+
+/* nav ul,
+nav,
+nav ul li {
+  width: 400px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin: 5px;
+} */
+/* #navigation {
+  width: 100%;
+  height: auto;
 }
+
+#navigation ul {
+  display: flex;
+  flex-direction: row;
+}
+
+#navigation ul li {
+  display: flex;
+  flex-direction: row;
+} */
 
 /* Trade Tables */
 #container {
@@ -177,6 +227,7 @@ th {
   width: 415px;
 }
 
+/* Responsive Design */
 
 
 
