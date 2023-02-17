@@ -170,6 +170,13 @@ a:hover {
   font-size: 15px;
 }
 
+/* Chart */
+#chart-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Trade Tables */
 #container {
   display: flex;

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="./resources/css/style.css" />
     <link rel="stylesheet" href="./resources/css/fonts/BebasNeue-Regular.ttf" />
     <link rel="stylesheet" href="./resources/css/fonts/Montserrat-Regular.ttf" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>ByBit Trades Tracker - BTC/USDT PERP</title>
   </head>
 
@@ -40,10 +41,14 @@
 
         <button id="theme-toggle">Light/Dark</button>
       </div>
-      
+
     </nav>
 
     <h2>BTC/USDT PERP</h2>
+
+    <div id="chart-container">
+      <canvas id="myChart"></canvas>
+    </div>
 
     <div id="container">
     <table id="total-table">
@@ -80,6 +85,8 @@
     </div>
 
     <script src="./resources/js/bundle2.js"></script>
+    
+
 
   </body>
 

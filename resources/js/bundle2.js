@@ -26658,28 +26658,6 @@ const ws = new WebsocketClient(wsConfig);
 
 ws.subscribe('publicTrade.BTCUSDT');
 
-// Listen to events coming from websockets. This is the primary data source
-// ws.on('update', (data) => {
-//     console.log('update', data);
-// });
-
-// Test outputting only specific data points.
-// ws.on('update', (data) => {
-//   const side = data.data[0].S;
-//   const volume = data.data[0].v;
-//   const price = data.data[0].p;
-//   console.log('Direction:', side, 'Trade price:', price, 'Trade quantity:', volume);
-// });
-
-// Test if data is array with one object
-// ws.on('update', (data) => {
-//   if ( Array.isArray(data) ) {
-//     console.log('True');
-//   } else {
-//     console.log('False');
-//   }
-// })
-
 // Optional: Listen to connection close event. Unexpected connection closes are automatically reconnected.
 ws.on('close', () => {
     console.log('connection closed');
@@ -26699,31 +26677,6 @@ ws.on('response', (response) => {
 ws.on('error', (err) => {
     console.error('error', err);
   });
-
-
-//grab correct elements on received payload -- THIS WORKS (Use Case: Creating and Updating the Recent Trades Tracker)
-// ws.on('update', (data) => {
-//   const side = data.data[0].S;
-//   const volume = data.data[0].v;
-//   const price = data.data[0].p;
-//   trades.unshift({side, volume, price});
-
-//   // Only keep up to 30 trades
-//   if ( trades.length > 30 ) {
-//     trades.pop();
-//   }
-
-//   // Update the HTML table
-//   table.innerHTML = trades.map((trade) => {
-//     return `
-//       <tr>
-//         <td>${trade.side}</td>
-//         <td>${trade.volume}</td>
-//         <td>${trade.price}</td>
-//       </tr>
-//     `;
-//   }).join('');
-// });
 
 // test updating the html table
 const table = document.querySelector('#trade-table tbody');
@@ -26836,54 +26789,14 @@ const resetValues = () => {
 // call restValues() function
 resetValues();
 
-// set interval to reset buys/sells and volume
-// setInterval(resetValues, resetInterval1m);
-
-
-// test new feature
-// ws.on('update', (data) => {
-//   const side = data.data[0].S;
-//   const volume = data.data[0].v;
-//   const price = data.data[0].p;
-//   if ( side === "Buy" ) {
-//     totalBuys += 1;
-//     volumeBuys += Number(volume);
-//   } else if ( side === "Sell" ) {
-//     totalSells += 1;
-//     volumeSells += Number(volume);
-//   };
-//   trades.unshift({side, volume, price});
-
-//   // Only keep up to 30 trades
-//   if ( trades.length > 30 ) {
-//     trades.pop();
-//   }
-
-//   // Update the HTML table
-//   table.innerHTML = trades.map((trade) => {
-//     return `
-//       <tr>
-//         <td>${trade.side}</td>
-//         <td>${trade.volume}</td>
-//         <td>${trade.price}</td>
-//       </tr>
-//     `;
-//   }).join('');
-
-//   // Update the total trades HTML table
-//   numBuys.innerHTML = totalBuys;
-//   numSells.innerHTML = totalSells;
-//   volBuys.innerHTML = volumeBuys.toFixed(2);
-//   volSells.innerHTML = volumeSells.toFixed(2);
-//   // console.log(`${volumeBuys}`);
-//   // console.log(`${volumeSells}`);
-// }); 
-
 // test using the map method to insert strength tracker
 ws.on('update', (data) => {
   const side = data.data[0].S;
   const volume = data.data[0].v;
   const price = data.data[0].p;
+  const time = data.data[0].T;
+
+  //Update Total Buys/Sells and Volume Buys/Sells counters
   if ( side === "Buy" ) {
     totalBuys += 1; totalBuys5 += 1; totalBuys15 += 1; totalBuys30 += 1; totalBuys60 += 1; totalBuys240 += 1; totalBuys720 += 1; totalBuys1440 += 1;
     volumeBuys += Number(volume); volumeBuys5 += Number(volume); volumeBuys15 += Number(volume); volumeBuys30 += Number(volume); volumeBuys60 += Number(volume); volumeBuys240 += Number(volume); volumeBuys720 += Number(volume); volumeBuys1440 += Number(volume);
@@ -26891,6 +26804,8 @@ ws.on('update', (data) => {
     totalSells += 1; totalSells5 += 1; totalSells15 += 1; totalSells30 += 1; totalSells60 += 1; totalSells240 += 1; totalSells720 += 1; totalSells1440 += 1;
     volumeSells += Number(volume); volumeSells5 += Number(volume); volumeSells15 += Number(volume); volumeSells30 += Number(volume); volumeSells60 += Number(volume); volumeSells240 += Number(volume); volumeSells720 += Number(volume); volumeSells1440 += Number(volume);
   };
+
+  // Update trades and strengths arrays with new incoming data
   trades.unshift({side, volume, price});
   strengths.pop();
   strengths.pop();
@@ -27003,6 +26918,43 @@ ws.on('update', (data) => {
     </tr>
     `;
   }).join('');
+
+    //Add new price data to chart
+    const maxDataPoints = 500;
+    priceChart.data.labels.push(volume);
+    priceChart.data.datasets[0].data.push(price);
+
+    // try a for loop to change colors
+    for ( let i = 1; i < priceChart.data.datasets[0].data.length; i++ ) {
+      if ( priceChart.data.datasets[0].data[i] > priceChart.data.datasets[0].data[i - 1]) {
+        priceChart.data.datasets[0].borderColor = 'green';
+        // priceChart.data.datasets[0].fill = { target: 'origin', above: 'rgba(0, 128, 0, 0.25'};
+      } else if ( priceChart.data.datasets[0].data[i] < priceChart.data.datasets[0].data[i - 1] ) {
+        priceChart.data.datasets[0].borderColor = 'red';
+        // priceChart.data.datasets[0].fill = { target: 'origin', above: 'rgba(255, 0, 0, 0.25'};
+      } else {
+        priceChart.data.datasets[0].borderColor = 'gray';
+        // priceChart.data.datasets[0].fill = { target: 'origin', above: 'rgba(128, 128, 128, 0.25'};
+      }
+    };
+
+    // test - only update chart every ten messages
+    // let updateCount = 0;
+    // updateCount++;
+    // if ( updateCount % 10 === 0 ) {
+    //   priceChart.data.labels.push(volume);
+    //   priceChart.data.datasets[0].data.push(price);
+    //   priceChart.update();
+    //   updateCount = 0;
+    // };
+
+    priceChart.update();
+
+    if ( priceChart.data.labels.length > maxDataPoints ) {
+      priceChart.data.labels.shift();
+      priceChart.data.datasets[0].data.shift();
+    };
+
 }); 
 
 // Theme Toggle - Light/Dark
@@ -27012,6 +26964,32 @@ const body = document.querySelector('body');
 themeToggle.addEventListener('click', function() {
   body.classList.toggle('dark');
 });
+
+// Attempt to plot price data from incoming websocket data
+const priceChart = new Chart('myChart', {
+  type: 'line',
+  // borderColor: 'blue',
+  // borderJoinStyle: 'bevel',
+  data: {
+    labels: [],
+    datasets: [{
+      label: 'BTC/USDT PERP',
+      data: [],
+      borderColor: 'blue',
+      borderJoinStyle: 'miter',
+      tension: 0.1,
+    }]
+  }
+});
+
+//test using document query selector to explicity rewrite the canvas html element on each update -- DOESN'T WORK
+// const chartCanvas = document.querySelector('#myChart');
+// chartCanvas.innerHTML = priceChart;
+
+//use shift to remove first plots and then update chart again -- DOESN'T WORK
+// priceChart.data.labels.shift();
+// priceChart.data.datasets[0].data.shift();
+// priceChart.update();
 
 // next steps
 // 1. write logic that will reset each counter every set time period.
@@ -27039,6 +27017,117 @@ themeToggle.addEventListener('click', function() {
 //     volSells += volume;
 //   }
 // });
+
+// set interval to reset buys/sells and volume
+// setInterval(resetValues, resetInterval1m);
+
+
+// Initial test to dynamically generate and update an HTML table with incoming websocket data. 
+// ws.on('update', (data) => {
+//   const side = data.data[0].S;
+//   const volume = data.data[0].v;
+//   const price = data.data[0].p;
+//   if ( side === "Buy" ) {
+//     totalBuys += 1;
+//     volumeBuys += Number(volume);
+//   } else if ( side === "Sell" ) {
+//     totalSells += 1;
+//     volumeSells += Number(volume);
+//   };
+//   trades.unshift({side, volume, price});
+
+//   // Only keep up to 30 trades
+//   if ( trades.length > 30 ) {
+//     trades.pop();
+//   }
+
+//   // Update the HTML table
+//   table.innerHTML = trades.map((trade) => {
+//     return `
+//       <tr>
+//         <td>${trade.side}</td>
+//         <td>${trade.volume}</td>
+//         <td>${trade.price}</td>
+//       </tr>
+//     `;
+//   }).join('');
+
+//   // Update the total trades HTML table
+//   numBuys.innerHTML = totalBuys;
+//   numSells.innerHTML = totalSells;
+//   volBuys.innerHTML = volumeBuys.toFixed(2);
+//   volSells.innerHTML = volumeSells.toFixed(2);
+//   // console.log(`${volumeBuys}`);
+//   // console.log(`${volumeSells}`);
+// }); 
+
+// Charting Functionality - INITIAL TEST WORKS FINE
+// const ctx = document.getElementById('myChart').getContext('2d');
+// const myChart = new Chart(ctx, {
+//   type: 'line',
+//   data: {
+//     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+//     datasets: [{
+//       label: 'My First Dataset',
+//       data: [0, 10, 5, 2, 20, 30, 45],
+//       borderColor: 'rgb(255, 99, 132)',
+//       tension: 0.1
+//     }]
+//   },
+//   options: {
+//     scales: {
+//       y: {
+//         beginAtZero: true
+//       }
+//     }
+//   }
+// });
+
+//grab correct elements on received payload -- THIS WORKS (Use Case: Creating and Updating the Recent Trades Tracker)
+// ws.on('update', (data) => {
+//   const side = data.data[0].S;
+//   const volume = data.data[0].v;
+//   const price = data.data[0].p;
+//   trades.unshift({side, volume, price});
+
+//   // Only keep up to 30 trades
+//   if ( trades.length > 30 ) {
+//     trades.pop();
+//   }
+
+//   // Update the HTML table
+//   table.innerHTML = trades.map((trade) => {
+//     return `
+//       <tr>
+//         <td>${trade.side}</td>
+//         <td>${trade.volume}</td>
+//         <td>${trade.price}</td>
+//       </tr>
+//     `;
+//   }).join('');
+// });
+
+// Listen to events coming from websockets. This is the primary data source
+// ws.on('update', (data) => {
+//     console.log('update', data);
+// });
+
+// Test outputting only specific data points.
+// ws.on('update', (data) => {
+//   const side = data.data[0].S;
+//   const volume = data.data[0].v;
+//   const price = data.data[0].p;
+//   console.log('Direction:', side, 'Trade price:', price, 'Trade quantity:', volume);
+// });
+
+// Test if data is array with one object
+// ws.on('update', (data) => {
+//   if ( Array.isArray(data) ) {
+//     console.log('True');
+//   } else {
+//     console.log('False');
+//   }
+// })
 },{"bybit-api":222}],188:[function(require,module,exports){
 module.exports = require('./lib/axios');
 },{"./lib/axios":190}],189:[function(require,module,exports){
