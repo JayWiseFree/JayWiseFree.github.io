@@ -170,36 +170,6 @@ a:hover {
   font-size: 15px;
 }
 
-/* nav li {
-  display: inline-block;
-  padding: 10px;
-} */
-
-/* nav ul,
-nav,
-nav ul li {
-  width: 400px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 5px;
-} */
-/* #navigation {
-  width: 100%;
-  height: auto;
-}
-
-#navigation ul {
-  display: flex;
-  flex-direction: row;
-}
-
-#navigation ul li {
-  display: flex;
-  flex-direction: row;
-} */
-
 /* Trade Tables */
 #container {
   display: flex;
