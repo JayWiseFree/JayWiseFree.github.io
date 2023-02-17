@@ -21,6 +21,18 @@ li {
   text-align: center;
 }
 
+/* Dark theme */
+body.dark {
+  background-color: rgb(15, 13, 13);
+  color: steelblue;
+}
+
+/* Light theme */
+body {
+  background-color: blanchedalmond;
+  color: #000;
+}
+
 /* Header */
 header h1 {
   overflow: auto;
@@ -32,18 +44,27 @@ header h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: rgb(231, 230, 230);
   height: 200px;
   border: 0.2rem solid #fff;
   padding: 10px;
   border-radius: 2rem;
   box-shadow: 0 0 .2rem #fff,
               0 0 .2rem #fff,
-              0 0 2rem #bc13fe,
-              0 0 0.8rem #bc13fe,
-              0 0 2.8rem #bc13fe,
-              inset 0 0 1.3rem #bc13fe;
+              0 0 2rem #320544,
+              0 0 0.8rem #320544,
+              0 0 2.8rem #320544,
+              inset 0 0 1.3rem #320544;
   margin-bottom: 10px;
+}
+
+body.dark header h1 {
+  box-shadow: 0 0 .2rem #fff,
+  0 0 .2rem #fff,
+  0 0 2rem #640e86,
+  0 0 0.8rem #640e86,
+  0 0 2.8rem #640e86,
+  inset 0 0 1.3rem #640e86;
 }
 
 #container2 {
@@ -58,13 +79,13 @@ header h2 {
   color: black;
 }
 
-.neonText {
+/* .neonText {
   animation: flicker 1.5s infinite alternate;
   color: #000;
-}
+} */
 
 /* Flickering animation */
-@keyframes flicker {
+/* @keyframes flicker {
   0%, 18%, 22%, 25%, 53%, 57%, 100% {
     text-shadow:
       0 0 4px #fff,
@@ -79,7 +100,7 @@ header h2 {
   20%, 24%, 55% {       
     text-shadow: none;
   }
-}
+} */
 
 /*Accessibility no flickering for those with preferred reduced motion */
 @media screen and (prefers-reduced-motion) { 
@@ -101,6 +122,10 @@ h2 {
   border-radius: 2rem;
   margin-top: 5px;
   overflow: auto;
+}
+
+body.dark #support {
+  border: 1px solid rgb(238, 238, 238); 
 }
 
 /* Navigation */

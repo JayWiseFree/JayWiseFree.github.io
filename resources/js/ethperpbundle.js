@@ -27005,6 +27005,14 @@ ws.on('update', (data) => {
   }).join('');
 }); 
 
+// Theme Toggle - Light/Dark
+const themeToggle = document.querySelector('#theme-toggle');
+const body = document.querySelector('body');
+
+themeToggle.addEventListener('click', function() {
+  body.classList.toggle('dark');
+});
+
 // next steps
 // 1. write logic that will reset each counter every set time period.
 //  a. i could do it the way i'm doing it, by creating a seperate variable for each time instance OR I could reset the HTML output every five minutes...
