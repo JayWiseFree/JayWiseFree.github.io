@@ -26968,6 +26968,11 @@ themeToggle.addEventListener('click', function() {
 // Attempt to plot price data from incoming websocket data
 const priceChart = new Chart('myChart', {
   type: 'line',
+  options: {
+    animation: {
+      duration: 0,
+    },
+  },
   // borderColor: 'blue',
   // borderJoinStyle: 'bevel',
   data: {
@@ -26978,8 +26983,8 @@ const priceChart = new Chart('myChart', {
       borderColor: 'blue',
       borderJoinStyle: 'miter',
       tension: 0.1,
-    }]
-  }
+    }],
+  },
 });
 
 //test using document query selector to explicity rewrite the canvas html element on each update -- DOESN'T WORK
